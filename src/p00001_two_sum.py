@@ -11,6 +11,6 @@ class Solution:
             p2 = target - p1
             if p1 == p2 and len(num_dict[p1]) > 1:
                 return [num_dict[p1][0], num_dict[p1][1]]
-            if p2 in num_keys:
+            if p1 != p2 and p2 in num_dict:
                 return [num_dict[p1][0], num_dict[p2][0]]
         return []
