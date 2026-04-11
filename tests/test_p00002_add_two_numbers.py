@@ -1,6 +1,13 @@
 import pytest
 
-from p00002_add_two_numbers import Solution, create_node
+from p00002_add_two_numbers import ListNode, Solution
+
+
+def create_node(lnode: list[int]):
+    next_node = ListNode(val=lnode[len(lnode) - 1], next=None)
+    for i in range(len(lnode) - 2, -1, -1):
+        next_node = ListNode(val=lnode[i], next=next_node)
+    return next_node
 
 
 @pytest.mark.parametrize(
