@@ -10,6 +10,8 @@ from p00003_longest_substring_without_repeating_characters import Solution
         ("bbbbb", 1),
         ("pwwkew", 3),
         ("dvdf", 3),
+        (" ", 1),
+        ("cdd", 2),
     ],
 )
 def test_add_two_numbers(s, expected):
