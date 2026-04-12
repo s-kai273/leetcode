@@ -1,0 +1,18 @@
+import pytest
+
+from p00005_longest_palindromic_substring import Solution
+
+
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("babad", "bab"),
+        ("cbbd", "bb"),
+        ("abcddcbaaa", "abcddcba"),
+        ("a", "a"),
+        ("ac", "a"),
+    ],
+)
+def test_longest_palindromic_substring(s, expected):
+    solution = Solution()
+    assert solution.longestPalindrome(s) == expected
