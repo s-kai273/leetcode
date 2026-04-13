@@ -12,18 +12,22 @@ class Solution:
         for ci in even_center_list:
             dw = 0
             while True:
-                if s[ci - 1 - dw : ci] != s[ci : ci + dw + 1][::-1]:
+                if (
+                    ci - 1 - dw < 0
+                    or ci + dw > len(s) - 1
+                    or s[ci - 1 - dw] != s[ci + dw]
+                ):
                     break
-                if len(max_substring) < len(s[ci - 1 - dw : ci + dw + 1]):
+                if len(max_substring) < 2 * (dw + 1):
                     max_substring = s[ci - 1 - dw : ci + dw + 1]
                 dw += 1
         for ci in odd_center_list:
             dw = 0
             while True:
-                if s[ci - 1 - dw : ci] != s[ci + 1 : ci + dw + 2][::-1]:
+                if ci - dw < 0 or ci + dw > len(s) - 1 or s[ci - dw] != s[ci + dw]:
                     break
-                if len(max_substring) < len(s[ci - 1 - dw : ci + dw + 2]):
-                    max_substring = s[ci - 1 - dw : ci + dw + 2]
+                if len(max_substring) < 2 * dw + 1:
+                    max_substring = s[ci - dw : ci + dw + 1]
                 dw += 1
         if max_substring == "":
             max_substring = s[0]

@@ -11,6 +11,7 @@ from p00005_longest_palindromic_substring import Solution
         ("abcddcbaaa", "abcddcba"),
         ("a", "a"),
         ("ac", "a"),
+        ("ccc", "ccc"),
     ],
 )
 def test_longest_palindromic_substring(s, expected):
