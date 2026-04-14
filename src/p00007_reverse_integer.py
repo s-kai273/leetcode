@@ -1,7 +1,7 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        negative = x < 0
-        rev_val = int(str(x)[::-1]) if not negative else -1 * int(str(x * -1)[::-1])
+        sign = -1 if x < 0 else 1
+        rev_val = sign * int(str(abs(x))[::-1])
         if rev_val < -(2**31) or rev_val > 2**31 - 1:
             return 0
         return rev_val
