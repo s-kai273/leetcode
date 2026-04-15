@@ -1,5 +1,5 @@
 import pytest
-from p00004_median_of_two_sorted_arrays import Solution
+from problems.p00004_median_of_two_sorted_arrays import Solution
 
 
 @pytest.mark.parametrize(

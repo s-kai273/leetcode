@@ -1,6 +1,6 @@
 import pytest
 
-from p00007_reverse_integer import Solution
+from problems.p00007_reverse_integer import Solution
 
 
 @pytest.mark.parametrize(

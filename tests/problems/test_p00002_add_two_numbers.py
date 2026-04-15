@@ -1,6 +1,6 @@
 import pytest
 
-from p00002_add_two_numbers import ListNode, Solution
+from problems.p00002_add_two_numbers import ListNode, Solution
 
 
 def create_node(lnode: list[int]):

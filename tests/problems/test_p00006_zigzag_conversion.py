@@ -1,6 +1,6 @@
 import pytest
 
-from p00006_zigzag_conversion import Solution
+from problems.p00006_zigzag_conversion import Solution
 
 
 @pytest.mark.parametrize(

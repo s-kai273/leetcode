@@ -1,6 +1,6 @@
 import pytest
 
-from p00008_string_to_integer import Solution
+from problems.p00008_string_to_integer import Solution
 
 
 @pytest.mark.parametrize(

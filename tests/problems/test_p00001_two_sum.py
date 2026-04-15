@@ -1,6 +1,6 @@
 import pytest
 
-from p00001_two_sum import Solution
+from problems.p00001_two_sum import Solution
 
 
 @pytest.mark.parametrize(

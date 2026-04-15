@@ -1,6 +1,6 @@
 import pytest
 
-from p00005_longest_palindromic_substring import Solution
+from problems.p00005_longest_palindromic_substring import Solution
 
 
 @pytest.mark.parametrize(
