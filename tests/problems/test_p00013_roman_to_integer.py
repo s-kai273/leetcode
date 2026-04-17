@@ -11,6 +11,6 @@ from problems.p00013_roman_to_integer import Solution
         ("MCMXCIV", 1994),
     ],
 )
-def test_integer_to_roman(s, expected):
+def test_roman_to_integer(s, expected):
     solution = Solution()
     assert solution.romanToInt(s) == expected

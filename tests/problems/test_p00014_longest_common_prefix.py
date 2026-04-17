@@ -11,6 +11,6 @@ from problems.p00014_longest_common_prefix import Solution
         ([""], ""),
     ],
 )
-def test_integer_to_roman(strs, expected):
+def test_longest_common_prefix(strs, expected):
     solution = Solution()
     assert solution.longestCommonPrefix(strs) == expected
