@@ -11,14 +11,14 @@ class Solution:
         }
 
     def romanToInt(self, s: str) -> int:
-        def dfs(i: int):
+        def parse(i: int):
             if i > len(s) - 1:
                 return 0
             val = self.romanDict[s[i]]
             next_val = self.romanDict[s[i + 1]] if i < len(s) - 1 else 0
             if next_val > val:
-                return next_val - val + dfs(i + 2)
+                return next_val - val + parse(i + 2)
             else:
-                return val + dfs(i + 1)
+                return val + parse(i + 1)
 
-        return dfs(0)
+        return parse(0)
