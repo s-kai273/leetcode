@@ -7,6 +7,8 @@ class Solution:
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
             for j in range(i + 1, n - 2):
+                if nums[j] > 0 and nums[i] + nums[j] > target:
+                    continue
                 if j > i + 1 and nums[j] == nums[j - 1]:
                     continue
                 li = j + 1
