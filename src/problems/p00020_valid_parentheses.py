@@ -1,25 +1,17 @@
-from collections import deque
-
-
 class Solution:
     def __init__(self):
-        self.parenthesesMap = {
+        self.closingMap = {
             "(": ")",
             "{": "}",
             "[": "]",
         }
 
     def isValid(self, s: str) -> bool:
-        queue = deque([])
+        stack = []
         for ch in s:
-            if ch in self.parenthesesMap.keys():
-                queue.appendleft(ch)
-                queue.append(self.parenthesesMap[ch])
-            elif ch in self.parenthesesMap.values():
-                if len(queue) < 2:
+            if ch in self.closingMap.keys():
+                stack.append(self.closingMap[ch])
+            elif ch in self.closingMap.values():
+                if not stack or stack.pop() != ch:
                     return False
-                queue.popleft()
-                close = queue.pop()
-                if close != ch:
-                    return False
-        return len(queue) == 0
+        return len(stack) == 0
