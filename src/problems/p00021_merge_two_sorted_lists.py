@@ -14,21 +14,13 @@ class Solution:
     ) -> Optional[ListNode]:
         dummy = ListNode(0)
         current = dummy
-        current1 = list1
-        current2 = list2
-        while current1 is not None or current2 is not None:
-            if current1 is None:
-                current.next = ListNode(current2.val)
-                current2 = current2.next
-            elif current2 is None:
-                current.next = ListNode(current1.val)
-                current1 = current1.next
+        while list1 is not None and list2 is not None:
+            if list1.val < list2.val:
+                current.next = ListNode(list1.val)
+                list1 = list1.next
             else:
-                if current1.val < current2.val:
-                    current.next = ListNode(current1.val)
-                    current1 = current1.next
-                else:
-                    current.next = ListNode(current2.val)
-                    current2 = current2.next
+                current.next = ListNode(list2.val)
+                list2 = list2.next
             current = current.next
+        current.next = list1 if list1 is not None else list2
         return dummy.next
