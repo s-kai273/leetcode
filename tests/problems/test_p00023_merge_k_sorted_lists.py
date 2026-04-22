@@ -7,7 +7,7 @@ from problems.p00023_merge_k_sorted_lists import ListNode, Solution
     "lists, expected",
     [([[1, 4, 5], [1, 3, 4], [2, 6]], [1, 1, 2, 3, 4, 4, 5, 6]), ([], []), ([[]], [])],
 )
-def test_generate_parentheses(lists, expected):
+def test_merge_k_sorted_lists(lists, expected):
     solution = Solution()
     nodes = []
     for arr in lists:

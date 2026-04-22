@@ -1,3 +1,4 @@
+import heapq
 from typing import Optional
 
 
@@ -9,21 +10,21 @@ class ListNode:
 
 
 class Solution:
-    def getVals(self, lists: list[Optional[ListNode]]):
-        vals = []
-        for node in lists:
-            current = node
-            while current is not None:
-                vals.append(current.val)
-                current = current.next
-        return vals
-
     def mergeKLists(self, lists: list[Optional[ListNode]]) -> Optional[ListNode]:
         dummy = ListNode(0)
         current = dummy
-        vals = self.getVals(lists)
-        vals.sort()
-        for val in vals:
+        heap = []
+        for i in range(len(lists)):
+            node = lists[i]
+            if node is None:
+                continue
+            heapq.heappush(heap, (node.val, i))
+        while heap:
+            val, i = heapq.heappop(heap)
             current.next = ListNode(val)
             current = current.next
+            node = lists[i]
+            if node.next is not None:
+                heapq.heappush(heap, (node.next.val, i))
+                lists[i] = node.next
         return dummy.next
