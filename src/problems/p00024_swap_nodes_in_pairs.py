@@ -10,17 +10,22 @@ class ListNode:
 
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(0)
-        current = dummy
-        first_val = None
+        first = None
+        odd_node = None
         while head is not None:
-            if first_val is None:
-                first_val = head.val
+            if odd_node is None:
+                odd_node = head
             else:
-                current.next = ListNode(head.val, ListNode(first_val))
-                current = current.next.next
-                first_val = None
+                tmp_node = head.next
+                head.next = odd_node
+                odd_node.next = tmp_node
+                print(
+                    f"## tmp_node: {tmp_node.val}, head: {head.val}, odd_node: {odd_node.val}"
+                )
+                if first is None:
+                    first = head
+                head = odd_node
+                odd_node = None
+            print(f"## head.val: {head.val}")
             head = head.next
-        if first_val is not None:
-            current.next = ListNode(first_val)
-        return dummy.next
+        return first
