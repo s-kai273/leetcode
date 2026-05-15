@@ -8,6 +8,7 @@ from problems.p00424_longest_repeating_character_replacement import Solution
     [
         ("ABAB", 2, 4),
         ("AABABBA", 1, 4),
+        ("ABAB", 0, 1),
     ],
 )
 def test_valid_anagram(s, k, expected):
