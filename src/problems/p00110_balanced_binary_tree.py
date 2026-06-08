@@ -8,17 +8,15 @@ class TreeNode:
 
 class Solution:
     def isBalanced(self, root: TreeNode | None) -> bool:
-        balanced = True
-
         def dfs(node: TreeNode | None):
-            nonlocal balanced
             if node is None:
                 return 0
             left = dfs(node.left)
             right = dfs(node.right)
+            if left == -1 or right == -1:
+                return -1
             if abs(left - right) > 1:
-                balanced = False
+                return -1
             return max(left, right) + 1
 
-        dfs(root)
-        return balanced
+        return dfs(root) != -1
