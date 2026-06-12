@@ -1,11 +1,11 @@
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
-        count_val_dict = dict()
         val_count_dict = dict()
         for val in nums:
             val_count_dict[val] = val_count_dict.get(val, 0) + 1
-            count_val_dict.setdefault(val_count_dict[val], set()).add(val)
-            count_val_dict.setdefault(val_count_dict[val] - 1, set()).discard(val)
+        count_val_dict = dict()
+        for val, count in val_count_dict.items():
+            count_val_dict.setdefault(count, []).append(val)
         count = 0
         top_k_val_list = list()
         for c in sorted(count_val_dict.keys(), reverse=True):
