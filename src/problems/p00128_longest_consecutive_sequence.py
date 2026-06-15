@@ -4,7 +4,6 @@ class Solution:
         max_length = 0
         for val in num_set:
             if val - 1 not in num_set:
-                start = val
                 current = val + 1
                 length = 1
                 while current in num_set:
