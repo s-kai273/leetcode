@@ -1,33 +1,17 @@
 class Solution:
     def trap(self, height: list[int]) -> int:
-        trap = 0
-
-        start = 0
-        while start < len(height) and height[start] < 1:
-            start += 1
-        end = start + 1
-        current_bar = 0
-        while end < len(height):
-            if height[end] < height[start]:
-                current_bar += height[end]
+        left = 0
+        right = len(height) - 1
+        max_h_left = 0
+        max_h_right = 0
+        water = 0
+        while left < right:
+            if height[left] < height[right]:
+                max_h_left = max(max_h_left, height[left])
+                water += max_h_left - height[left]
+                left += 1
             else:
-                trap += height[start] * (end - start - 1) - current_bar
-                current_bar = 0
-                start = end
-            end += 1
-        last_start = start
-
-        start = len(height) - 1
-        while start > -1 and height[start] < 1:
-            start -= 1
-        end = start - 1
-        current_bar = 0
-        while end > last_start - 1:
-            if height[end] < height[start]:
-                current_bar += height[end]
-            else:
-                trap += height[start] * (start - end - 1) - current_bar
-                current_bar = 0
-                start = end
-            end -= 1
-        return trap
+                max_h_right = max(max_h_right, height[right])
+                water += max_h_right - height[right]
+                right -= 1
+        return water
