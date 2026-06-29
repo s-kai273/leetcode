@@ -19,13 +19,10 @@ class Solution:
             queue.append(current)
             current = current.next
         current = queue.popleft()
-        while True:
-            if not queue:
-                current.next = None
-                break
+        while queue:
             current.next = queue.pop()
-            if not queue:
-                current.next.next = None
-                break
-            current.next.next = queue.popleft()
-            current = current.next.next
+            current = current.next
+            if queue:
+                current.next = queue.popleft()
+                current = current.next
+        current.next = None
