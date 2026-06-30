@@ -10,18 +10,17 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        head_val_list = []
+        len_list = 0
         current = head
-        while current is not None:
-            head_val_list.append(current.val)
+        while current:
+            len_list += 1
             current = current.next
-        head_len = len(head_val_list)
-        ti = head_len - n
-        dummy = ListNode(0)
+        i_target = len_list - n
+        dummy = ListNode(0, head)
         current = dummy
-        for i in range(head_len):
-            if i == ti:
-                continue
-            current.next = ListNode(head_val_list[i])
+        for i in range(len_list):
+            if i == i_target:
+                current.next = current.next.next if current.next else None
+                break
             current = current.next
         return dummy.next
