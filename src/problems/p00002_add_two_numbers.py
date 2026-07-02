@@ -9,28 +9,24 @@ class Solution:
     def addTwoNumbers(
         self, l1: ListNode | None, l2: ListNode | None
     ) -> ListNode | None:
-        if l1 is None and l2 is None:
-            return None
-        if l1 is None:
-            return l2
-        if l2 is None:
-            return l1
-        dummy = ListNode(0)
-        current = dummy
-        node1 = l1
-        node2 = l2
+        dummy_sum = ListNode(0)
+        cur_l1 = l1
+        cur_l2 = l2
+        cur_sum = dummy_sum
         carry = 0
-        while node1 is not None or node2 is not None:
-            val1 = node1.val if node1 is not None else 0
-            val2 = node2.val if node2 is not None else 0
-            val = val1 + val2 + carry
-            current.next = ListNode(val % 10)
-            current = current.next
-            carry = val // 10
-            if node1 is not None:
-                node1 = node1.next
-            if node2 is not None:
-                node2 = node2.next
-        if carry > 0:
-            current.next = ListNode(carry)
-        return dummy.next
+        while cur_l1 and cur_l2:
+            cur_sum.next = ListNode((cur_l1.val + cur_l2.val + carry) % 10)
+            carry = (cur_l1.val + cur_l2.val + carry) // 10
+            cur_l1 = cur_l1.next
+            cur_l2 = cur_l2.next
+            cur_sum = cur_sum.next
+        rest_l = cur_l1 if not cur_l2 else cur_l2
+        while carry > 0:
+            l_val = rest_l.val if rest_l else 0
+            cur_sum.next = ListNode((l_val + carry) % 10)
+            carry = (l_val + carry) // 10
+            if rest_l:
+                rest_l = rest_l.next
+            cur_sum = cur_sum.next
+        cur_sum.next = rest_l
+        return dummy_sum.next
