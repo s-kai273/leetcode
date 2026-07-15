@@ -15,8 +15,8 @@ class Solution:
             return []
         queue = deque()
         queue.append((0, root))
-        level_order_dict = dict()
-        last_level = 0
+        level_order_list = list()
+        cur_level = -1
         while queue:
             level, node = queue.popleft()
 
@@ -27,9 +27,8 @@ class Solution:
                 queue.append((level + 1, node.right))
 
             # Update leve_order_dict
-            level_order_dict.setdefault(level, []).append(node.val)
-            last_level = level
-        level_order_list = list()
-        for level in range(last_level + 1):
-            level_order_list.append(level_order_dict[level])
+            if cur_level != level:
+                cur_level += 1
+                level_order_list.append(list())
+            level_order_list[level].append(node.val)
         return level_order_list
