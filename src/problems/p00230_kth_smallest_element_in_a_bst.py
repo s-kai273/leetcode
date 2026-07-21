@@ -11,27 +11,22 @@ class Solution:
         if not root:
             raise ValueError
 
-        kth_smallest = 10**4
+        kth_smallest = None
+        count = 0
 
-        def dfs(root: TreeNode | None, k: int) -> int:
-            """
-            Return value: node number
-            """
-            nonlocal kth_smallest
+        def dfs(root: TreeNode | None) -> None:
+            nonlocal kth_smallest, count
             if not root:
-                return 0
+                return
 
-            left_count = dfs(root.left, k)
-            if left_count == -1:
-                return -1
-            if left_count + 1 == k:
+            dfs(root.left)
+            if kth_smallest is not None:
+                return
+            count += 1
+            if count == k:
                 kth_smallest = root.val
-                return -1
+                return
+            dfs(root.right)
 
-            right_count = dfs(root.right, k - (left_count + 1))
-            if right_count == -1:
-                return -1
-            return left_count + right_count + 1
-
-        dfs(root, k)
+        dfs(root)
         return kth_smallest
