@@ -16,18 +16,11 @@ class Solution:
                 return 0
             left_sum = dfs(root.left)
             right_sum = dfs(root.right)
-            path_sum = root.val
-            if left_sum > 0:
-                path_sum += left_sum
-            if right_sum > 0:
-                path_sum += right_sum
-            max_sum = max(max_sum, path_sum)
+            left_max = max(left_sum, 0)
+            right_max = max(right_sum, 0)
+            max_sum = max(max_sum, root.val + left_max + right_max)
 
-            path_sum = root.val
-            if left_sum < 0 and right_sum < 0:
-                return path_sum
-            path_sum += left_sum if left_sum > right_sum else right_sum
-            return path_sum
+            return root.val + max(left_max, right_max)
 
         dfs(root)
         return max_sum
