@@ -3,12 +3,11 @@ class Solution:
         subsets = list()
 
         def dfs(i: int, value_list: list[int]):
-            nonlocal subsets
             subsets.append(value_list.copy())
-            for j in range(i + 1, len(nums)):
+            for j in range(i, len(nums)):
                 value_list.append(nums[j])
-                dfs(j, value_list)
+                dfs(j + 1, value_list)
                 value_list.pop()
 
-        dfs(-1, [])
+        dfs(0, [])
         return subsets
