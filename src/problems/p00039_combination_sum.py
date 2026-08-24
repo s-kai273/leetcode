@@ -3,8 +3,7 @@ class Solution:
         comb_list = list()
         nums.sort()
 
-        def dfs(start_i: int, arr: list[int]):
-            arr_sum = sum(arr)
+        def dfs(start_i: int, arr: list[int], arr_sum):
             for i in range(start_i, len(nums)):
                 n = nums[i]
                 if arr_sum + n > target:
@@ -13,8 +12,8 @@ class Solution:
                 if arr_sum + n == target:
                     comb_list.append(arr.copy())
                 elif arr_sum + n < target:
-                    dfs(i, arr)
+                    dfs(i, arr, arr_sum + n)
                 arr.pop()
 
-        dfs(0, [])
+        dfs(0, [], 0)
         return comb_list
