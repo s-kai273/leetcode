@@ -9,6 +9,9 @@ class TrieNode:
     def get_child(self, ch: str) -> "TrieNode | None":
         return self.child_dict.get(ch, None)
 
+    def has_any_child(self) -> bool:
+        return len(self.child_dict.keys()) > 0
+
 
 class Trie:
     def __init__(self):
@@ -22,28 +25,28 @@ class Trie:
                 cur_node.add_child(ch)
                 next_node = cur_node.get_child(ch)
             cur_node = next_node
+        if not cur_node.get_child("0"):
+            cur_node.add_child("0")
 
-    def contains(self, prefix: str):
+    def contains(self, prefix: str, with_end: bool = False):
         cur_node = self.root_node
         for ch in prefix:
             next_node = cur_node.get_child(ch)
             if not next_node:
                 return False
             cur_node = next_node
-        return True
+        return cur_node.get_child("0") is not None if with_end else True
 
 
 class PrefixTree:
     def __init__(self):
-        self.word_set = set()
         self.word_trie = Trie()
 
     def insert(self, word: str) -> None:
-        self.word_set.add(word)
         self.word_trie.add(word)
 
     def search(self, word: str) -> bool:
-        return word in self.word_set
+        return self.word_trie.contains(word, True)
 
     def startsWith(self, prefix: str) -> bool:
         return self.word_trie.contains(prefix)
