@@ -1,7 +1,7 @@
 class Solution:
     def maxFrequency(self, nums: list[int], k: int) -> int:
         nums.sort(reverse=True)
-        max_freq = 0
+        max_freq = 1
         op_count = 0
         j = 0
         for i in range(len(nums)):
@@ -14,7 +14,6 @@ class Solution:
                     op_count += target - nums[j]
                     j += 1
                 else:
-                    max_freq = max(max_freq, j - i)
                     break
             max_freq = max(max_freq, j - i)
         return max_freq
