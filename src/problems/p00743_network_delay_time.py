@@ -5,7 +5,6 @@ class Solution:
     def networkDelayTime(self, times: list[list[int]], n: int, k: int) -> int:
         relations = [list() for _ in range(n)]
         nodes = set()
-        visited_paths = set()
         heap = list()
 
         # Convert times to relations
@@ -20,10 +19,9 @@ class Solution:
             t, i = heapq.heappop(heap)
             nodes.add(i)
             for next_t, next_i in relations[i]:
-                if (i, next_i) in visited_paths:
+                if next_i in nodes:
                     continue
                 heapq.heappush(heap, (next_t + t, next_i))
-                visited_paths.add((i, next_i))
             if len(nodes) == n:
                 return t
 
