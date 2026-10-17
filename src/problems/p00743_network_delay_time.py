@@ -17,10 +17,10 @@ class Solution:
         # Update heap, nodes in loop
         while heap:
             t, i = heapq.heappop(heap)
+            if i in nodes:
+                continue
             nodes.add(i)
             for next_t, next_i in relations[i]:
-                if next_i in nodes:
-                    continue
                 heapq.heappush(heap, (next_t + t, next_i))
             if len(nodes) == n:
                 return t
