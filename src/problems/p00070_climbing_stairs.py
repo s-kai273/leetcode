@@ -1,14 +1,10 @@
 class Solution:
-    def __init__(self):
-        self.memo = dict()
-
     def climbStairs(self, n: int) -> int:
         if n == 1:
             return 1
         if n == 2:
             return 2
-        if n in self.memo:
-            return self.memo[n]
-        stairs = self.climbStairs(n - 1) + self.climbStairs(n - 2)
-        self.memo[n] = stairs
-        return stairs
+        prev1, prev2 = 1, 2
+        for _ in range(3, n + 1):
+            prev2, prev1 = prev2 + prev1, prev2
+        return prev2
