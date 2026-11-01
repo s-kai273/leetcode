@@ -7,8 +7,8 @@ class Solution:
                 return 0
             if memo[i] is not None:
                 return memo[i]
-            result = nums[i] + max(dfs(i + 2), dfs(i + 3))
+            result = max(dfs(i + 1), nums[i] + dfs(i + 2))
             memo[i] = result
             return result
 
-        return max(dfs(0), dfs(1))
+        return dfs(0)
