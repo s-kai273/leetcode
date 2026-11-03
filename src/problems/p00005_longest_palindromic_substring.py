@@ -1,34 +1,22 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        odd_center_list = []
-        even_center_list = []
-        for i in range(1, len(s)):
-            if s[i] == s[i - 1]:
-                even_center_list.append(i)
-        for i in range(1, len(s) - 1):
-            if s[i + 1] == s[i - 1]:
-                odd_center_list.append(i)
-        max_substring = ""
-        for ci in even_center_list:
-            dw = 0
-            while True:
-                if (
-                    ci - 1 - dw < 0
-                    or ci + dw > len(s) - 1
-                    or s[ci - 1 - dw] != s[ci + dw]
-                ):
-                    break
-                if len(max_substring) < 2 * (dw + 1):
-                    max_substring = s[ci - 1 - dw : ci + dw + 1]
-                dw += 1
-        for ci in odd_center_list:
-            dw = 0
-            while True:
-                if ci - dw < 0 or ci + dw > len(s) - 1 or s[ci - dw] != s[ci + dw]:
-                    break
-                if len(max_substring) < 2 * dw + 1:
-                    max_substring = s[ci - dw : ci + dw + 1]
-                dw += 1
-        if max_substring == "":
-            max_substring = s[0]
-        return max_substring
+        n = len(s)
+        dp = [[False] * n for _ in range(n)]
+
+        max_li, max_ri = 0, 0
+        max_len = 0
+
+        for l in range(1, n + 1):
+            hl = l // 2
+            for i in range(n):
+                li = i - hl + 1 if l % 2 == 0 else i - hl
+                ri = i + hl
+                if li < 0 or ri > n - 1:
+                    continue
+                if s[li] == s[ri] and (ri - li <= 1 or dp[li + 1][ri - 1]):
+                    dp[li][ri] = True
+                    if max_len < l:
+                        max_li = li
+                        max_ri = ri
+                        max_len = l
+        return s[max_li : max_ri + 1]
